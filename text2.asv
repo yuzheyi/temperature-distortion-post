@@ -1,6 +1,5 @@
-function results = range(path)
 path_fold=[path '\']
-file_path=fullfile(path_fold, 'average.mat');
+file_path=fullfile('E:\mywork\博士工作\脉冲爆震温度畸变装置\数据\result-case2-900\', 'average.mat');
 load(file_path)
 %%过滤data只有数据
 data = T
@@ -25,10 +24,10 @@ while i<=length(axis_poision)
     angle_start=5-(average_temperature-data{startIndex,i})/(data{(startIndex-1),i}-data{startIndex,i})*5
     angle_end=5-(average_temperature-data{endIndex,i})/(data{(endIndex+1-length(data)*floor((endIndex+0.9)/length(data))),i}-data{endIndex,i})*5
     greaterThan400Range = 360-abs(angles(startIndex)-angles(endIndex));
-    %当处于挡板内部时，实际轴向角不需要进行插值，否则会造成角度过大
-    %判断如果和之前结果的平均差值为0时，则说明在挡板内部，其变化率总保持0，当挡板消失，平均值必然发生改变因此可认为没有挡板结构
-    axis_poisio_judge(i)= greaterThan400Range
-    if mean(axis_poisio_judge)-greaterThan400Range ~=0
+    %判断如果斜率为零的话
+    axis_poisio_(2,i)= greaterThan400Range
+    AAA=mean(axis_poision(2,:))
+    if mean(axis_poision(2,:))-greaterThan400Range ~=0
         axis_poision(2,i)= greaterThan400Range+angle_start+angle_end
     else
         axis_poision(2,i)= greaterThan400Range

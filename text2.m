@@ -1,4 +1,5 @@
-path_fold=[path '\']
+
+clear all
 file_path=fullfile('E:\mywork\博士工作\脉冲爆震温度畸变装置\数据\result-case1-900\', 'average.mat');
 load(file_path)
 %%过滤data只有数据
@@ -13,18 +14,27 @@ i=1
 axis_poision =cellfun(@(x) str2double(regexp(x, '[\d.]+', 'match')), T(1,2:width(T)));
 computer_length=axis_poision(1,length(axis_poision))
 while i<=length(axis_poision)
-values = cell2mat(data(:, i)); % 提取数值部分
-average_temperature = mean(values) 
-% 寻找大于500的角度
-greaterThan400Angles = angles(values > average_temperature);
-
-% 通过小于500摄氏度的范围反算出高温
-startIndex = find(values <average_temperature, 1); % 第一个大于400的角度索引
-endIndex = find(values <average_temperature, 1, 'last'); % 最后一个大于400的角度索引
-%通过插值进一步
-greaterThan400Range = 360-abs(angles(startIndex)-angles(endIndex));
-axis_poision(2,i)= greaterThan400Range
-i=i+1
+    values = cell2mat(data(:, i)); % 提取数值部分
+    average_temperature = mean(values) 
+    % 寻找大于500的角度
+    greaterThan400Angles = angles(values > average_temperature);
+    % 通过小于500摄氏度的范围反算出高温
+    startIndex = find(values <average_temperature, 1); % 第一个小于400的角度索引
+    endIndex = find(values <average_temperature, 1, 'last'); % 最后一个小于400的角度索引
+    %通过两个角度的插值进一步增加角度精度（基于简单的两点线性插值）
+    angle_start=5-(average_temperature-data{startIndex,i})/(data{(startIndex-1),i}-data{startIndex,i})*5
+    angle_end=5-(average_temperature-data{endIndex,i})/(data{(endIndex+1-length(data)*floor((endIndex+0.9)/length(data))),i}-data{endIndex,i})*5
+    greaterThan400Range = 360-abs(angles(startIndex)-angles(endIndex));
+    %当处于挡板内部时，实际轴向角不需要进行插值，否则会造成角度过大
+    %判断如果和之前结果的平均差值为0时，则说明在挡板内部，其变化率总保持0，当挡板消失，平均值必然发生改变因此可认为没有挡板结构
+    axis_poisio_judge(i)= greaterThan400Range
+    if mean(axis_poisio_judge)-greaterThan400Range ~=0
+        axis_poision(2,i)= greaterThan400Range+angle_start+angle_end
+    else
+        axis_poision(2,i)= greaterThan400Range
+    end
+    
+    i=i+1
 end
 
 
