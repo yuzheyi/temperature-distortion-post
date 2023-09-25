@@ -28,8 +28,8 @@ file_path=fullfile(path_fold, 'average.mat');
     end
 % temperture_on_line(path_fold,T)
 % temperture_on_line(path_fold,P)
-results =  range(path_fold)
-% T_divation(path_fold)
+%results =  range(path_fold)
+P_divation(path_fold)
 % temperture_on_line(path_fold,T)
 end
 

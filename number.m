@@ -3,24 +3,28 @@ clear all
 P=1.01*10^5,T=300,fraction_o=0.4
 %爆震管参数
 l=2,d=0.08,f=20
-% 燃油参数燃油流量，燃油与氧气反应的恰当比（一公斤燃油要消耗多少氧气）
-m_f=0.5466,phi=3.429
+% 燃油参数燃油流量，燃油与氧气反应的恰当比，碳氢燃料的碳数和H数
+mf_f=0.5466,X=,Y=
+phi=
 
-
-%%% 计算密度
+%%根据碳氢燃料方程计算氧气摩尔数
+a=x+y/4
+%%计算氧气质量,根据质量分数反推燃料-氧化剂恰当比
 %% M=28,R=314,P=1.01*10^5,T=300
-M_o=32,M_n=28,R=8314
-R_g_o=R/M_o
-R_g_n=R/M_n
-rho=fraction_o*P/(T*R_g_o)+(1-fraction_o)*P/(T*R_g_n)
+M_o=16,M_n=14,M_h=1,R=8314
+mass_ox=a*M_o/fraction_o
+mass_fuel=x*M_o+y*M_h
+F_A=mass_fuel/mass_ox
+%% 根据化学恰当比和当量比计算氧化剂质量流量
+mf_ox=mf_f/(phi*F_A)
+
+%%% 计算氧化剂密度
+R_g_o=R/（M_o*2）
+R_g_n=R/（M_n*2）
+rho_ox=fraction_o*P/(T*R_g_o)+(1-fraction_o)*P/(T*R_g_n)
 
 
-% 计算达到温度所需的总燃气流量
-%计算所需要的氧气
-m_o=phi*m_f
-%更具所需氧气计算总质量流量
-m_t=m_o/fraction_o
-%更具当地工况计算体积流量
+%计算氧化剂体积流量
 V_t=m_t/rho
 
 % 计算单根爆震燃烧室总流量
