@@ -1,5 +1,5 @@
-clear all
-% data = readtable('E:\mywork\脉冲爆震温度畸变装置\数据\case2\data');
-[Rdata, headers] = xlsread('E:\mywork\博士工作\脉冲爆震温度畸变装置\数据\case2\data.xlsx', 2);
-integral_result = trapz(Rdata(:,4), Rdata(:,2));
-average_temperature=integral_result/(max(Rdata(:,4))-min(Rdata(:,4)))
+P0=0.7*10^6,T0=300,r=1.4,Rg = 273.7;
+T_cr=T0*2/(r+1);
+C_cr=sqrt(2*r/(r+1)*Rg*T0)
+m=sqrt(r* P0^2/(Rg *T0)*((2/(r+1))^((r+1)/(r-1))))
+q=4*(5*10^(-3))^2*pi*m

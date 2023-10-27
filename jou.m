@@ -1,8 +1,6 @@
 % 指定文本文件路径(ti-menu-load-string (format #F "    " myPath))
 file_path = 'C:\Users\YUJJ\Desktop\project\calculate_model\case1\case1commands.jou';
-long=2.1
-
-
+long=2.
 delete(file_path); % 删除文件
 filePath = '~a/result/';
 % 打开文本文件以进行写入
