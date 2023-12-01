@@ -8,7 +8,7 @@ airInlet = AirInletParameters(300, 87*10^3, 300, 70,70/4,1.004)
 phi=1
 %%% 爆震管参数DetonationDesign(length,diameter)
 %%detonationCondition(length,diameter,number)单位使用毫米（mm）
-detonation = DetonationCondition(2000,80,8)
+detonation = DetonationCondition(1500,80,8)
 
 %% 计算过程(实验工况)
 Q = energy(airInlet)%对应第一步

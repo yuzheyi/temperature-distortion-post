@@ -1,5 +1,5 @@
 % 指定文本文件路径(ti-menu-load-string (format #F "    " myPath))
-file_path = 'C:\Users\YUJJ\Desktop\project\calculate_model\case1\case1commands.jou';
+file_path = 'E:\mywork\博士工作\脉冲爆震温度畸变装置\matlab\case1commands.jou';
 long=2.
 delete(file_path); % 删除文件
 filePath = '~a/result/';
