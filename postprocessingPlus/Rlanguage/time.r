@@ -1,8 +1,8 @@
 rm(list = ls())
 # 读取文件的每一行
 
-path <- "case3/plane1.7m/"
-lines <- readLines(paste(path,'data', sep = ""))
+path <- "./"
+lines <- readLines(paste(path,'averagedata', sep = ""))
 
 varible_names <- list("custom-time")
 numbers_list <- list()
@@ -20,4 +20,4 @@ for (varible_name in varible_names) {
 }
 
 df = numbers_list[["custom-time"]]
-write.csv(df, file = paste(path,"time.csv", sep = ""))
+write.csv(df, file = paste(path,"/planedata/time.csv", sep = ""))

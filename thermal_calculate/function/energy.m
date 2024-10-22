@@ -8,6 +8,6 @@
 %%
 function Q = energy(airInlet)
  %单位kj/(kg*K),假设加热前后的空气压力保持不变（流入与流出的压力保持不变）
- n=0.9%定义一个燃烧效率
+n=0.85%定义一个燃烧效率
 Q_inti = airInlet.TemperatureChange*airInlet.HighTemperatureFlowRate*airInlet.SpecificHeatConstantPressure
 Q = Q_inti/n

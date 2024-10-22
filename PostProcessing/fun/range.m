@@ -16,6 +16,20 @@ computer_length=axis_poision(1,length(axis_poision))
 while i<=length(axis_poision)
     values = cell2mat(data(:, i)); % 提取数值部分
     average_temperature = mean(values) 
+    
+        VaribleCol=[]
+        averageTemperature=mean(Varible(:,i))
+        %%拟合角度-温度函数
+        angle=-180:deltaAngled:180%x轴
+        VaribleCol=[Varible(:,i)' Varible(1,i)];%y轴
+        %%样条插值
+        xx=-180:0.1:180
+        f_varible=spline(angle,VaribleCol,xx)
+        xId=xx(find(f_varible > averageTemperature))
+        yId=f_varible(find(f_varible > averageTemperature))
+        num_x = length(xId);%%查找大于平均值x的个数
+        angleResult(i)=0.1*num_x%%使用积分的思想，角度范围大于y值的角度乘变化步长
+    
     % 寻找大于500的角度
     greaterThan400Angles = angles(values > average_temperature);
     % 通过小于500摄氏度的范围反算出高温
@@ -28,6 +42,10 @@ while i<=length(axis_poision)
     %当处于挡板内部时，实际轴向角不需要进行插值，否则会造成角度过大
     %判断如果和之前结果的平均差值为0时，则说明在挡板内部，其变化率总保持0，当挡板消失，平均值必然发生改变因此可认为没有挡板结构
     axis_poisio_judge(i)= greaterThan400Range
+
+
+
+
     if mean(axis_poisio_judge)-greaterThan400Range ~=0
         axis_poision(2,i)= greaterThan400Range+angle_start+angle_end
     else

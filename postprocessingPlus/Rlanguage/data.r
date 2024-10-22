@@ -1,6 +1,6 @@
 rm(list = ls())
 # 读取文件的每一行
-lines <- readLines("case3/AIP_1700mm/time/data")
+lines <- readLines("./averagedata")
 
 varible_names <- list("Mass Flow Rate","Total Temperature","Static Pressure","custom-time","Static Temperature" )
 numbers_list <- list()

@@ -1,0 +1,38 @@
+{
+  "runMode":2,
+  "multiSteadyPost": {
+    "root_path": "E:\\Desktop\\RDC\\caseRDC27\\result",
+    "cases": [
+      "steady1",
+      "steady11",
+      "steady2",
+      "steady3",
+      "steady4",
+      "steady5"
+    ],
+    "limits": [
+      "min",
+      "mid1",
+      "max"
+    ]
+  },
+  "unsteadyPost": {
+    "root_path": "E:\\Desktop\\RDC\\caseRDC18\\result"
+  },
+  "multiContourPrint": {
+    "root_path": [
+      "E:\\Desktop\\RDC\\caseRDC27\\result\\steady1\\mid1\\planexy1.45",
+      "E:\\Desktop\\RDC\\caseRDC27\\result\\steady2\\min\\planexy1.45", 
+      "E:\\Desktop\\RDC\\caseRDC27\\result\\steady3\\min\\planexy1.45",
+      "E:\\Desktop\\RDC\\caseRDC27\\result\\steady3\\max\\planexy1.45",
+      "E:\\Desktop\\RDC\\caseRDC27\\result\\steady4\\mid1\\planexy1.45"
+    ],
+    "titles": [
+      "工况2",
+      "工况7",
+      "工况12",
+      "工况12",
+      "工况14"
+    ]
+  }
+}

@@ -2,7 +2,6 @@ function result = averageAngleVaribleGrid(xposition,yposition,varible,deltaAngle
 %TEMPERATUREANGLEGRID 此处显示有关此函数的摘要
 %% 构造网格
 run createMesh.m
-
 load('circle_grid.mat')
 endT=size(varible,2)
 for t = 1:endT
@@ -32,7 +31,8 @@ for t = 1:endT
     averageTemperatureAreaVector=[]
     averageTemperatureVector=[]
     for theta=-180:deltaAngled:180-deltaAngled
-        distance = 0:0.001:max(xposition(:,t))
+        diffDistance = 0.001
+        distance = 0:diffDistance:max(xposition(:,t))
         %设置采样数列
         x=cosd(theta)*distance
         y=sind(theta)*distance
@@ -44,9 +44,13 @@ for t = 1:endT
         distance(AAA) = [];
         %% 直接平均
         averageTemperature = mean(ZI)
-        %% 面积加权
-        area=ZI.*(distance.^2*deltaAngled*pi/180)
-        averageTemperatureArea = sum(area(2:length(area))-area(1:length(area)-1))/(max(distance)^2*deltaAngled*pi/180)
+        %% 径向平均温度，根据国标需要进行修改
+        % area=ZI.*(distance.^2*deltaAngled*pi/180)
+        area = max(xposition(:,t))^2*deltaAngled*pi/180
+        deltaAngle=deltaAngled*pi/180
+        % averageTemperatureArea = sum(area(2:length(area))-area(1:length(area)-1))/(max(distance)^2*deltaAngled*pi/180)
+        averageTemperatureArea = deltaAngle*distance*ZI'*diffDistance/(max(distance)^2*deltaAngle*0.5)%pi*r*dr*对应的值/总面积
+
         %% 存储数据
         averageTemperatureAreaVector=[averageTemperatureAreaVector,averageTemperatureArea]
         averageTemperatureVector=[averageTemperatureVector,averageTemperature]

@@ -8,7 +8,7 @@ function result = temperatureAnglePlus(Varible,deltaAngled)
         averageTemperature=mean(Varible(:,i))
         %%拟合角度-温度函数
         angle=-180:deltaAngled:180%x轴
-        VaribleCol=[Varible(:,i)' Varible(1,i)];%y轴
+        VaribleCol=[Varible(:,i)' Varible(1,i)];%y轴,因为是-180到180所以要将第一个数字重复一下
         %%样条插值
         xx=-180:0.1:180
         f_varible=spline(angle,VaribleCol,xx)

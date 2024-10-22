@@ -3,7 +3,7 @@ clear all
 %%% fuel = FuelProperties(heatValue, cNumber, hNumber);
 fuel = FuelProperties(43070, 8, 18)
 %%% airInlet = = AirInletParameters(temperature, pressure, temperatureChange, flowRate,highTemperatureFlowRate, specificHeatCP)
-airInlet = AirInletParameters(300, 87*10^3, 300, 70,70/4,1.004)
+airInlet = AirInletParameters(300, 87*10^3, 100, 75,75/4,1.004)
 %%实际当量比
 phi=1
 %%% 爆震管参数DetonationDesign(length,diameter)

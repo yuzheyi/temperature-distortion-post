@@ -1,6 +1,6 @@
 rm(list = ls())
 # 读取文件的每一行
-lines <- readLines("case3/AIP_1700mm/time/mfData")
+lines <- readLines("./mfinlet")
 
 varible_names <- list("plane-xy","pres_inlet_1","pres_inlet_2", "pres_inlet_3","pres_inlet_4","pres_inlet_5","pres_inlet_6","pres_inlet_7","pres_inlet_8","Net")
 numbers_list <- list()

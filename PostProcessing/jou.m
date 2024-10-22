@@ -1,8 +1,8 @@
 % 指定文本文件路径(ti-menu-load-string (format #F "    " myPath))
-file_path = 'E:\mywork\博士工作\脉冲爆震温度畸变装置\matlab\case1commands.jou';
+file_path = 'D:\YUJJ\mywork\博士工作\脉冲爆震温度畸变装置\开发程序\matlab\PostProcessing\case1commands.jou';
 long=2.
 delete(file_path); % 删除文件
-filePath = '~a/result/';
+filePath = '~a/result/time1/';
 % 打开文本文件以进行写入
 file_id = fopen(file_path, 'w');
 fprintf(file_id, '!mkdir result\n(define myPath (getenv "PWD"))\n');
@@ -40,7 +40,7 @@ commanddelete = '/surface/delete-surface '
 for i = 0:5:355
     % 构建完整的命令字符串
     fileName = ['line' num2str(axis_position) '_'  num2str(i)];
-    command = [commandPrefix filePath  'T' num2str(axis_position) '_'  num2str(i) ' ok yes no no total-temperature no yes no ' fileName ' () " myPath))'];
+    command = [commandPrefix filePath  'T' num2str(axis_position) '_'  num2str(i) ' ok yes no no temperature no yes no ' fileName ' () " myPath))'];
     % 将命令写入文件
     fprintf(file_id, '%s\n', command);
     fileName = ['line' num2str(axis_position) '_'  num2str(i)];

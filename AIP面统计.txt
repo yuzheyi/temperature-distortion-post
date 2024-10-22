@@ -1,0 +1,15 @@
+Summary of selected_temperature:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  286.5   299.8   323.0   327.1   339.5   462.9 
+
+Summary of summary_totalTemperature:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  298.2   315.8   337.3   344.1   359.1   501.1 
+
+Summary of selected_mass_flow_rate:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  55.29   64.55   67.91   70.72   71.61  113.44 
+
+Summary of selected_pressure:
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-12630.1  -1217.0    561.9   1020.5   2728.7  20353.1 

@@ -30,7 +30,7 @@ function result = averageAngleVarible(xposition,yposition,varible,deltaAngled)
         selected_rows = sortrows(selected_rows, 2);%%按弧长大小排列
     %     近似求面积从第二行开始减去第一行
         aera = zeros(1, size(selected_rows,1));  % 初始化 aera 数组
-        laera(1)=selected_rows(1,2)
+        aera(1)=selected_rows(1,2)
         for i = 2:size(selected_rows,1)%矩阵的行
             aera(i) = selected_rows(i, 2) - selected_rows(i-1, 2);
             varible=selected_rows( :,3:size(selected_rows,2));

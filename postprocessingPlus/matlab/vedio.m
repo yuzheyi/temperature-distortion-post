@@ -9,18 +9,19 @@ if selected_folder == 0
 else
     % 如果用户选择了文件夹，则输出所选文件夹路径
     disp(['用户选择的文件夹路径为：' selected_folder]);
-    % 在这里可以继续对所选文件夹进行其他操作
+    % 在这里可以继续对所选文件夹进行其-【p-p他操作
     % ...
     path = ([selected_folder '\'])
 end
 load([path '\planeData.mat']);
 load('circle_grid.mat')
 % 创建 VideoWriter 对象
-outputVideo = VideoWriter('interpolation_animation.mp4', 'MPEG-4');
+outputVideo = VideoWriter([path '\interpolation_animation.mp4'], 'MPEG-4');
 outputVideo.FrameRate = 10;
 open(outputVideo);
 % 遍历时间步长
 varible=planeData.temperature
+% varible=planeData.pressure
 for t = 1:length(planeData.time)
     % 对网格上的点进行插值
     zq = griddata(planeData.xposition(:,t), planeData.yposition(:,t), varible(:,t), xq, yq);
