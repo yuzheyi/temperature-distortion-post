@@ -6,9 +6,12 @@ pressure_correction = 87000;
 msg = ['读取' path '的数据...'];
 h = msgbox(msg, '提示');
 pause(1);
+%% 构造网格
+run createMesh.m
 if exist([path 'averageData2.mat'], 'file')
     load([path 'averageData.mat'],'averageData');
 else
+
     %% 查找文件夹下所有的截面文件
     % 获取所有文件
     files = dir(fullfile(path, 'planexy*'));
@@ -16,8 +19,9 @@ else
     name = {files.name}
     filePathAll = fullfile(path, {files.name});%文件路径
     fileNum = length(filePathAll)%文件数量
+
     %%
-    for i = 1:fileNum
+    parfor i = 1:fileNum
         %%%读取数据
         filePath= filePathAll{1, i}
         data = readtable(filePath, 'FileType', 'text');
@@ -30,30 +34,34 @@ else
         [V_dim,cowMin]=min(V_coordinate)%由于方差最小为轴向距离
         axiaPosition = mean(coordinate(:,cowMin))%由于方差最小为轴向距离
         coordinate(:,cowMin)=[]%去除轴向保留截面坐标
-        planeData.xposition = coordinate(:,1)
-        planeData.yposition = coordinate(:,2)
+        xposition = coordinate(:,1)
+        yposition = coordinate(:,2)
 
         %%
-        planeData.pressure=data.pressure
-        planeData.temperature=data.total_temperature
+        pressure=data.pressure
+        temperature=data.total_temperature
         %   过滤点
         % 计算坐标平方和
-        xy_square_sum = planeData.xposition.^2 + planeData.yposition.^2;       
+        xy_square_sum = xposition.^2 + yposition.^2;       
         % 根据坐标平方和筛选数据
         filtered_indices = xy_square_sum <= 0.375^2;
-        planeData.xposition = planeData.xposition(filtered_indices);
-        planeData.yposition = planeData.yposition(filtered_indices);
-        planeData.temperature = planeData.temperature(filtered_indices);
-        planeData.pressure = planeData.pressure(filtered_indices) + pressure_correction;
 
-        T = averageAngleVaribleGrid(planeData.xposition,planeData.yposition,planeData.temperature,deltaAngled)
-        averageData.temperature(:,i) = T.dataAverageVArea
-        P = averageAngleVaribleGrid(planeData.xposition,planeData.yposition,planeData.pressure,deltaAngled)
-        averageData.pressure(:,i) = P.dataAverageVArea
-        averageData.axis_poision(i) = axiaPosition
+        % planeData输出参数
+        xposition = xposition(filtered_indices);
+        yposition = yposition(filtered_indices);
+        temperature = temperature(filtered_indices);
+        pressure = pressure(filtered_indices) + pressure_correction;
+        % averagedata输出参数
+        T = averageAngleVaribleGrid(xposition,yposition,temperature,deltaAngled)
+        temperatureAll(:,i) = T.dataAverageVArea
+        P = averageAngleVaribleGrid(xposition,yposition,pressure,deltaAngled)
+        pressureAll(:,i) = P.dataAverageVArea
+        axis_PositionAll(i) = axiaPosition
     end
-    save([path 'planeDataTime.mat'],'planeData');
-    averageData.angle = P.angle  
+    averageData.temperature = temperatureAll%所有截面温度平均
+    averageData.pressure = pressureAll%所有截面压力平均
+    averageData.angle = -180:deltaAngled:180-deltaAngled  %角度标识号（独立于温度压力的变量）
+    averageData.axis_poision= axis_PositionAll
     save([path 'averageData.mat'],'averageData');
 end
 

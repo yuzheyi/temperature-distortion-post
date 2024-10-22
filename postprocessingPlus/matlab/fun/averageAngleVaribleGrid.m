@@ -1,7 +1,5 @@
 function result = averageAngleVaribleGrid(xposition,yposition,varible,deltaAngled)
 %TEMPERATUREANGLEGRID 此处显示有关此函数的摘要
-%% 构造网格
-run createMesh.m
 load('circle_grid.mat')
 endT=size(varible,2)
 for t = 1:endT

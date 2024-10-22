@@ -13,6 +13,9 @@ function main()
         % disp('3: 运行云图后处理 multiContourPrint');
         % choice = input('请输入模式编号 (1, 2，3): ');
         choice = configData.runMode
+        
+        %% 构造网格
+        run createMesh.m
         % 根据用户选择运行相应的脚本
         switch choice
             case 1

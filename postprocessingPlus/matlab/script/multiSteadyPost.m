@@ -5,13 +5,16 @@ limits = configData.multiSteadyPost.limits;
 % 初始化存储 angle 和 highAverageTemperature 的 cell 数组
 angleData = [];
 highTempData = [];
+% 创建并行池
+parpool;
 
 index = 1;
 for ii = 1:length(cases)
     for j = 1:length(limits)
         close all;
         path = [root_path '\' cases{ii} '\' limits{j}];
-        run('steadyPost.m');
+        % run('steadyPost.m');
+        run('steadyPostParallel.m');
         delete(h);
         angleData(:,index) = angleRange.angle';
         highTempData(:,index) = angleRange.highAverageTemperature';
@@ -19,6 +22,8 @@ for ii = 1:length(cases)
     end
 end
 
+% 结束并行池
+delete(gcp('nocreate'));
 % 创建表头
 colNames = cell(1, length(cases) * length(limits));
 index = 1;
