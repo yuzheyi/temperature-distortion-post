@@ -6,7 +6,7 @@ pressure_correction = 87000;
 msg = ['读取' path '的数据...'];
 h = msgbox(msg, '提示');
 pause(1);
-if exist([path 'averageData2.mat'], 'file')
+if exist([path 'averageData.mat'], 'file')
     load([path 'averageData.mat'],'averageData');
 else
     %% 查找文件夹下所有的截面文件
@@ -14,7 +14,7 @@ else
     files = dir(fullfile(path, 'planexy*'));
     % 去掉 'planxy' 并显示结果
     name = {files.name}
-    filePathAll = fullfile(path, {files.name});%文件路径
+    filePathAll = fullfile({files.folder}, {files.name});%文件路径
     fileNum = length(filePathAll)%文件数量
     %%
     for i = 1:fileNum

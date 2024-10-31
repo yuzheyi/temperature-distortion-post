@@ -1,7 +1,14 @@
 function result = averageAngleVaribleGrid(xposition,yposition,varible,deltaAngled)
 %TEMPERATUREANGLEGRID 此处显示有关此函数的摘要
 load('circle_grid.mat')
+xq = xq
+yq = yq
 endT=size(varible,2)
+% 创建进度条
+% 检查是否需要创建进度条
+if endT >= 10
+    hWaitbar = waitbar(0, 'Processing...');
+end
 for t = 1:endT
     %% 构造一个时间尺度的网格
     zq = griddata(xposition(:,t), yposition(:,t), varible(:,t), xq, yq);
@@ -53,9 +60,18 @@ for t = 1:endT
         averageTemperatureAreaVector=[averageTemperatureAreaVector,averageTemperatureArea]
         averageTemperatureVector=[averageTemperatureVector,averageTemperature]
     end
-        dataAverageV(:,t)= averageTemperatureVector'
-        dataAverageVArea(:,t)=averageTemperatureAreaVector'
-        angle=-180:deltaAngled:180-deltaAngled
+    dataAverageV(:,t)= averageTemperatureVector'
+    dataAverageVArea(:,t)=averageTemperatureAreaVector'
+    angle=-180:deltaAngled:180-deltaAngled
+    % 更新进度条
+
+    if ~isempty(hWaitbar)
+        waitbar(t / endT, hWaitbar,sprintf('Processing... %d%%', round(t / endT * 100)));
+    end
+end
+% 关闭进度条
+if ~isempty(hWaitbar)
+    close(hWaitbar);
 end
 result.dataAverageV=dataAverageV
 result.dataAverageVArea=dataAverageVArea

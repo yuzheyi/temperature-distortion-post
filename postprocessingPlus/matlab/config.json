@@ -1,5 +1,5 @@
 {
-  "runMode":2,
+  "runMode":1,
   "multiSteadyPost": {
     "root_path": "E:\\Desktop\\RDC\\caseRDC27\\result",
     "cases": [
@@ -17,7 +17,7 @@
     ]
   },
   "unsteadyPost": {
-    "root_path": "E:\\Desktop\\RDC\\caseRDC18\\result"
+    "root_path": "E:\\Desktop\\RDC\\caseRDC29\\plane1.45"
   },
   "multiContourPrint": {
     "root_path": [

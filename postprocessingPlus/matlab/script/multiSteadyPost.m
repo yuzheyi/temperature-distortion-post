@@ -7,9 +7,9 @@ angleData = [];
 highTempData = [];
 % 创建并行池
 parpool;
-
 index = 1;
 for ii = 1:length(cases)
+%% 
     for j = 1:length(limits)
         close all;
         path = [root_path '\' cases{ii} '\' limits{j}];
@@ -21,7 +21,6 @@ for ii = 1:length(cases)
         index = index + 1;
     end
 end
-
 % 结束并行池
 delete(gcp('nocreate'));
 % 创建表头

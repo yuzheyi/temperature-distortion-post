@@ -54,12 +54,12 @@ function extractCustomTimeData(path)
     
     % 获取变量数据
     
-    % 创建目标目录（如果不存在）
-    output_dir = fullfile(path, 'planedata');
-    if ~exist(output_dir, 'dir')
-        mkdir(output_dir);
-    end
+    % % 创建目标目录（如果不存在）
+    % output_dir = fullfile(path, 'planedata');
+    % if ~exist(output_dir, 'dir')
+    %     mkdir(output_dir);
+    % end
     
     % 写入 CSV 文件
-    output_file = fullfile(output_dir, 'time.csv');
+    output_file = fullfile(path, 'time.csv');
     writematrix(numbers, output_file);

@@ -8,7 +8,7 @@ h = msgbox(msg, '提示');
 pause(1);
 %% 构造网格
 run createMesh.m
-if exist([path 'averageData2.mat'], 'file')
+if exist([path 'averageData.mat'], 'file')
     load([path 'averageData.mat'],'averageData');
 else
 
