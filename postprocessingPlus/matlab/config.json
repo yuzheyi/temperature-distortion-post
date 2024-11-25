@@ -1,7 +1,7 @@
 {
-  "runMode":1,
+  "runMode":2,
   "multiSteadyPost": {
-    "root_path": "E:\\Desktop\\RDC\\caseRDC27\\result",
+    "root_path": "E:\\Desktop\\RDC\\caseRDC29\\result\\result",
     "cases": [
       "steady1",
       "steady11",

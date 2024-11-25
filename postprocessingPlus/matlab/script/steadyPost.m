@@ -51,6 +51,10 @@ else
         P = averageAngleVaribleGrid(planeData.xposition,planeData.yposition,planeData.pressure,deltaAngled)
         averageData.pressure(:,i) = P.dataAverageVArea
         averageData.axis_poision(i) = axiaPosition
+
+        % 计算热点温度
+        hot_point_tempearture(i) = max(planeData.temperature)
+
     end
     save([path 'planeDataTime.mat'],'planeData');
     averageData.angle = P.angle  

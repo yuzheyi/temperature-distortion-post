@@ -35,5 +35,5 @@ function main()
         % 如果文件不存在，生成模板
         generate_config()
     end
-    % close all;
+    Rclose all;
 end

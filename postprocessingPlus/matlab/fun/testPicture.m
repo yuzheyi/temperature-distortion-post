@@ -11,8 +11,10 @@ function testPicture(path)
     % title(titleName);
     % caxis([min(min(AA.total_temperature)), max(max(AA.total_temperature))]);
 
-    % 对网格上的点进行插值
-    zq = griddata(AA.x_coordinate, AA.y_coordinate, AA.total_temperature, xq, yq);
+    % 修改插值方法
+    method = 'nearest'; % 可选 'linear', 'nearest', 'cubic'
+    zq = griddata(AA.x_coordinate, AA.y_coordinate, AA.total_temperature, xq, yq, method);
+
     % 设置jet色阶
     colormap('jet');
     % 绘制等高线图并去除等高线之间的线条

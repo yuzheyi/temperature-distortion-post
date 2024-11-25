@@ -114,10 +114,10 @@ end
 %% 创建csv格式方便其他程序调用
 savePath=([path '/csvfile/'])
 mkdir(savePath)
-% writematrix(angleRange.angle, [savePath 'angleRange.csv']);
-% writematrix(angleRange.averageTemperature,[savePath 'averageTemperature.csv']);
-% writematrix(angleRange.highAverageTemperature, [savePath 'highAverageTemperature.csv']);
-% writematrix(planeData.time, [savePath 'time.csv']);
+writematrix(angleRange.angle, [savePath 'angleRange.csv']);
+writematrix(angleRange.averageTemperature,[savePath 'averageTemperature.csv']);
+writematrix(angleRange.highAverageTemperature, [savePath 'highAverageTemperature.csv']);
+writematrix(planeData.time, [savePath 'time.csv']);
 
 %% 计算温升率
 diff_temperature= diff(angleRange.highAverageTemperature');
@@ -135,10 +135,9 @@ dataTable = table(...
                     angleRange.angle', ...
                     angleRange.averageTemperature', ...
                     angleRange.highAverageTemperature', ...
-                    'VariableNames', {'Time','Angle', 'AverageTemperature', ['HighAverageTemperature,rise_rate:' num2str(temperature_rise_rate) 'K/s']});
-                    
+                    'VariableNames', {'Time','Angle', 'AverageTemperature', 'HighAverageTemperature'});
 % 写入 CSV 文件
-writetable(dataTable, [savePath 'combinedData.csv']);
+writetable(dataTable, [savePath 'combinedData''.csv']);
 
 %% 输出图像
 time = planeData.time;

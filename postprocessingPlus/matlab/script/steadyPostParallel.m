@@ -1,6 +1,6 @@
 %% 读取plane的数据
 path=[path filesep]
-% path='E:\Desktop\RDC\caseRDC27\result\steady1\min\'
+%path='E:\Desktop\RDC\caseRDC27\result\steady1\min\'
 deltaAngled=5
 pressure_correction = 87000;
 msg = ['读取' path '的数据...'];
@@ -22,6 +22,7 @@ else
 
     %%
     parfor i = 1:fileNum
+    % for i = 1:fileNum
         %%%读取数据
         filePath= filePathAll{1, i}
         data = readtable(filePath, 'FileType', 'text');
@@ -57,11 +58,15 @@ else
         P = averageAngleVaribleGrid(xposition,yposition,pressure,deltaAngled)
         pressureAll(:,i) = P.dataAverageVArea
         axis_PositionAll(i) = axiaPosition
+
+        % 计算热点温度
+        hot_point_tempearture(i) = max(temperature)
     end
     averageData.temperature = temperatureAll%所有截面温度平均
     averageData.pressure = pressureAll%所有截面压力平均
     averageData.angle = -180:deltaAngled:180-deltaAngled  %角度标识号（独立于温度压力的变量）
     averageData.axis_poision= axis_PositionAll
+    averageData.hot_point_tempearture = hot_point_tempearture;
     save([path 'averageData.mat'],'averageData');
 end
 

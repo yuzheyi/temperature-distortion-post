@@ -1,7 +1,7 @@
 % 设置文件路径
 filePaths = configData.multiContourPrint.root_path
 titles = configData.multiContourPrint.titles
-
+figure(1)
 % 计算子图的行数和列数
 numPlots = length(filePaths);
 numRows = ceil(numPlots / 3); % 每行3个子图
@@ -9,6 +9,7 @@ numRows = ceil(numPlots / 3); % 每行3个子图
 colorbarLabel = 'Temperature (K)'; % 设置颜色栏的注释
 % 循环绘制子图
 for i = 1:numPlots
+    
     subplot(numRows, 3, i);
     testPicture(filePaths{i});
     colormap(jet);

@@ -6,6 +6,7 @@ yq = yq
 endT=size(varible,2)
 % 创建进度条
 % 检查是否需要创建进度条
+hWaitbar = [];
 if endT >= 10
     hWaitbar = waitbar(0, 'Processing...');
 end

@@ -18,6 +18,7 @@ for ii = 1:length(cases)
         delete(h);
         angleData(:,index) = angleRange.angle';
         highTempData(:,index) = angleRange.highAverageTemperature';
+        hotPointTempeartureData(:,index) = averageData.hot_point_tempearture';
         index = index + 1;
     end
 end
@@ -36,9 +37,9 @@ end
 % 将 cell 数组转换为表格，并设置表头
 angleTable = array2table(angleData, 'VariableNames', colNames);
 highTempTable = array2table(highTempData, 'VariableNames', colNames);
-
+hotPointTempTable = array2table(hotPointTempeartureData, 'VariableNames', colNames);
 
 writetable(angleTable, [root_path '\angleTable.csv']);
 writetable(highTempTable,[root_path '\highTempTable.csv']);
-
+writetable(hotPointTempTable,[root_path '\hotPointTempTable.csv']);
 
