@@ -1,17 +1,7 @@
 {
-  "general": {
-    "runMode": 3,
-    "meshType": [
-      1,
-      0.375,
-      500
-    ]
-  },
-  "unsteadyPost": {
-    "root_path": "E:\\Desktop\\RDC\\caseRDC29\\plane1.35"
-  },
+  "runMode":3,
   "multiSteadyPost": {
-    "root_path": "E:\\Desktop\\RDC\\caseRDC27\\result",
+    "root_path": "E:\\Desktop\\RDC\\caseRDC21\\result",
     "cases": [
       "steady1",
       "steady11",
@@ -26,10 +16,13 @@
       "max"
     ]
   },
+  "unsteadyPost": {
+    "root_path": "E:\\Desktop\\RDC\\caseRDC29\\plane1.35"
+  },
   "multiContourPrint": {
     "root_path": [
       "E:\\Desktop\\RDC\\caseRDC21\\result\\steady1\\mid1\\planexy1.45",
-      "E:\\Desktop\\RDC\\caseRDC21\\result\\steady2\\min\\planexy1.45",
+      "E:\\Desktop\\RDC\\caseRDC21\\result\\steady2\\min\\planexy1.45", 
       "E:\\Desktop\\RDC\\caseRDC21\\result\\steady3\\min\\planexy1.45",
       "E:\\Desktop\\RDC\\caseRDC21\\result\\steady3\\max\\planexy1.45",
       "E:\\Desktop\\RDC\\caseRDC21\\result\\steady4\\mid1\\planexy1.45"
@@ -41,6 +34,5 @@
       "工况12",
       "工况14"
     ]
-  },
-  "runMode": 3
+  }
 }

@@ -145,11 +145,11 @@ time = planeData.time;
 result = angleRange
 distort=(abs(result.averageTemperature-result.highAverageTemperature)./result.averageTemperature)%%温度周向不均匀度
 
-figure(1)
+figure(6)
 titleName=['高温区周向角']
 plot(time,result.angle)
 title(titleName);
-saveas( 1,[savePath '高温区周向角.jpg']);
+saveas( 6,[savePath '高温区周向角.jpg']);
 
 figure(2)
 result.angle(find(distort<0.19))=0

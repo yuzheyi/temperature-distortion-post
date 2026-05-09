@@ -1,7 +1,7 @@
 % 设置文件路径
 filePaths = configData.multiContourPrint.root_path
 titles = configData.multiContourPrint.titles
-figure(1)
+figure()
 % 计算子图的行数和列数
 numPlots = length(filePaths);
 numRows = ceil(numPlots / 3); % 每行3个子图

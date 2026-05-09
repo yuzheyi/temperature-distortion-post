@@ -6,30 +6,36 @@ limits = configData.multiSteadyPost.limits;
 angleData = [];
 highTempData = [];
 % 创建并行池
-parpool;
+%parpool(4);
 index = 1;
 for ii = 1:length(cases)
 %% 
     for j = 1:length(limits)
-        close all;
+        
         path = [root_path '\' cases{ii} '\' limits{j}];
         % run('steadyPost.m');
         run('steadyPostParallel.m');
         delete(h);
-        angleData(:,index) = angleRange.angle';
-        highTempData(:,index) = angleRange.highAverageTemperature';
-        hotPointTempeartureData(:,index) = averageData.hot_point_tempearture';
+        close(2);
+        angleData(:,index+1) = angleRange.angle';
+        highTempData(:,index+1) = angleRange.highAverageTemperature';
+        hotPointTempeartureData(:,index+1) = averageData.hot_point_tempearture';
         index = index + 1;
     end
 end
+% 设置angleData、highTempData、hotPointTempeartureData的第一列为轴向位置的值
+angleData(:,1) = averageData.axis_poision';
+highTempData(:,1) = averageData.axis_poision';
+hotPointTempeartureData(:,1) = averageData.axis_poision';
 % 结束并行池
-delete(gcp('nocreate'));
+%delete(gcp('nocreate'));
 % 创建表头
-colNames = cell(1, length(cases) * length(limits));
+colNames = cell(1, length(cases) * length(limits)+1);
 index = 1;
+colNames{1} = ['axis_position']
 for i = 1:length(cases)
     for j = 1:length(limits)
-        colNames{index} = [cases{i} '\' limits{j}];
+        colNames{index+1} = [cases{i} '\' limits{j}];
         index = index + 1;
     end
 end

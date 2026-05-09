@@ -7,7 +7,6 @@ msg = ['读取' path '的数据...'];
 h = msgbox(msg, '提示');
 pause(1);
 %% 构造网格
-run createMesh.m
 if exist([path 'averageData.mat'], 'file')
     load([path 'averageData.mat'],'averageData');
 else
@@ -89,6 +88,9 @@ end
 file_path= path
 plot_varible_on_line(averageData.temperature,averageData.axis_poision,averageData.angle)
 plot_varible_on_line(averageData.pressure,averageData.axis_poision,averageData.angle)
+
+
+
 % %% 计算压力参数
 % pause(1);
 % % 假设阶段1的任务完成后，您想要更改提示文字

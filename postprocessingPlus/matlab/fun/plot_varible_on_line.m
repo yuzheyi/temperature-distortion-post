@@ -3,7 +3,7 @@ function plot_varible_on_line(varible,axis_poision,angles)
     xi = min(axis_poision):0.01:max(axis_poision);  % 用于插值的新的x值
     legend_names = [];
         for i = 1:6:length(angles)
-            figure(1)
+            figure(2)
             % 进行三次样条插值
             yi = interp1(axis_poision, data(i,:), xi, 'pchip');
             % 绘制原始数据和插值结果的图形

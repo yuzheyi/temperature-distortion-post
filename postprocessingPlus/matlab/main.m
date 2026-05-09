@@ -12,19 +12,30 @@ function main()
         % disp('2: 运行稳态后处理 multiSteadyPost');
         % disp('3: 运行云图后处理 multiContourPrint');
         % choice = input('请输入模式编号 (1, 2，3): ');
-        choice = configData.runMode
+        
         
         %% 构造网格
-        run createMesh.m
+        meshType= configData.general.meshType(1)
+        switch meshType
+            case 1
+                circleMesh= configData.general.meshType
+                createCircleMesh(circleMesh(2),circleMesh(3))
+            otherwise
+                disp('无效选择，确认网格类型。');
+        end
         % 根据用户选择运行相应的脚本
+        choice = configData.general.runMode
         switch choice
             case 1
                 disp('1: 运行瞬态后处理 unsteadyPost');
-                run('unsteadyPost.m');
-                
+                run('unsteadyPost.m');               
             case 2
+                % 创建并行池
+                parpool(4);
                 disp('2: 运行稳态后处理 multiSteadyPost');
                 run('multiSteadyPost.m');
+                % 结束并行池
+                delete(gcp('nocreate'));
             case 3
                 disp('3: 运行云图后处理 multiContourPrint');
                 run('multiContourPrint.m');

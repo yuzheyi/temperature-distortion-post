@@ -1,0 +1,1 @@
+testPicture("E:\Desktop\RDC\caseRDC19\result\steady1\min\planexy1.2")
